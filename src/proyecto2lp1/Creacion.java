@@ -433,7 +433,7 @@ public class Creacion implements ActionListener {
 
         Iterator iterador = keyRutas.entrySet().iterator();
         //Sumas de verificacion para elegir el "mejor"
-        int[] temp_mejor_ruta = new int[keyMapaRuta];
+        float[] temp_mejor_ruta = new float[keyMapaRuta];
 
         int i = 0;
         while (iterador.hasNext()) {
@@ -442,46 +442,46 @@ public class Creacion implements ActionListener {
 
             for (String key2 : indicesKey) {
                 Conexion connect = (Conexion) conexiones.get(Integer.parseInt(key2));
-                temp_mejor_ruta[i] += connect.getRestardo();
-                temp_mejor_ruta[i] += connect.getTrafico();
+                temp_mejor_ruta[i] += connect.getRestardo() * 0.4;
+                temp_mejor_ruta[i] += connect.getTrafico() * 0.4;
 
                 switch (connect.getVelocidad()) {
                     case 1:
-                        temp_mejor_ruta[i] += 10;
+                        temp_mejor_ruta[i] += 10 * 0.2;
                         break;
                     case 2:
-                        temp_mejor_ruta[i] += 9;
+                        temp_mejor_ruta[i] += 9 * 0.2;
                         break;
                     case 3:
-                        temp_mejor_ruta[i] += 8;
+                        temp_mejor_ruta[i] += 8 * 0.2;
                         break;
                     case 4:
-                        temp_mejor_ruta[i] += 7;
+                        temp_mejor_ruta[i] += 7 * 0.2;
                         break;
                     case 5:
-                        temp_mejor_ruta[i] += 6;
+                        temp_mejor_ruta[i] += 6 * 0.2;
                         break;
                     case 6:
-                        temp_mejor_ruta[i] += 5;
+                        temp_mejor_ruta[i] += 5 * 0.2;
                         break;
                     case 7:
-                        temp_mejor_ruta[i] += 4;
+                        temp_mejor_ruta[i] += 4 * 0.2;
                         break;
                     case 8:
-                        temp_mejor_ruta[i] += 3;
+                        temp_mejor_ruta[i] += 3 * 0.2;
                         break;
                     case 9:
-                        temp_mejor_ruta[i] += 2;
+                        temp_mejor_ruta[i] += 2 * 0.2;
                         break;
                     case 10:
-                        temp_mejor_ruta[i] += 1;
+                        temp_mejor_ruta[i] += 1 * 0.2;
                         break;
                 }
             }
             i++;
         }
 
-        int inicio = temp_mejor_ruta[0];//peor es buenoo
+        float inicio = temp_mejor_ruta[0];//peor es buenoo
         int indiceMapa = 0;
 
         for (int j = 0; j < temp_mejor_ruta.length; j++) {

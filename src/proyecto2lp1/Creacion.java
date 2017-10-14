@@ -390,11 +390,9 @@ public class Creacion implements ActionListener {
     }
 
     public void mejorRuta() {
-
         String[] temporal = new String[2];
         temporal[0] = "0";
         temporal[1] = "0";
-
         int keyMapaRuta = 0;
         Iterator it = mapaRutas.entrySet().iterator();
         //Toda esta vaina para obtener los indices del mapa conexion
@@ -446,12 +444,12 @@ public class Creacion implements ActionListener {
                 Conexion connect = (Conexion) conexiones.get(Integer.parseInt(key2));
                 temp_mejor_ruta[i] += connect.getRestardo();
                 temp_mejor_ruta[i] += connect.getTrafico();
-                
-                switch(connect.getVelocidad()){
+
+                switch (connect.getVelocidad()) {
                     case 1:
                         temp_mejor_ruta[i] += 10;
                         break;
-                    case  2:
+                    case 2:
                         temp_mejor_ruta[i] += 9;
                         break;
                     case 3:

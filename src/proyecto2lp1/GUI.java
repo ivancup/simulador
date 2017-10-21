@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,13 +28,12 @@ public class GUI extends javax.swing.JFrame {
     int contadorConexion = 0;
     int contadorComputador = 0;
     Map map = new HashMap();
-    
+
     public GUI() {
         initComponents();
-        
+
         crear = new Creacion(contenedor, BNConexion, MVConexiones, BCalcularRuta);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,26 +168,29 @@ public class GUI extends javax.swing.JFrame {
 
     private void contenedorMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contenedorMouseMoved
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_contenedorMouseMoved
 
     private void BNComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNComputadorActionPerformed
         // TODO add your handling code here:
         contadorComputador++;
-        crear.Crear("computador", "computador"+contadorComputador);
+        if (contadorComputador <= 3) {
+            crear.Crear("computador", "computador" + contadorComputador);
+        } else {
+            JOptionPane.showMessageDialog(null, "El maximo de computadores es 3");
+        }
     }//GEN-LAST:event_BNComputadorActionPerformed
 
     private void BNConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNConexionActionPerformed
         // TODO add your handling code here:
-        if (BNConexion.getToolTipText().equals("0")){
+        if (BNConexion.getToolTipText().equals("0")) {
             conexion = 1;
 
             BNConexion.setToolTipText("1");
             BNConexion.setBackground(Color.green);
-            
-            crear.Crear("conexion", "conexion"+contadorConexion);
-        }
-        else{
+
+            crear.Crear("conexion", "conexion" + contadorConexion);
+        } else {
             BNConexion.setToolTipText("0");
             BNConexion.setBackground(null);
             conexion = 0;
@@ -197,19 +200,22 @@ public class GUI extends javax.swing.JFrame {
     private void BNRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNRouterActionPerformed
         // TODO add your handling code here:
         contadorRouter++;
-        crear.Crear("router", "router"+contadorRouter);
+        if (contadorRouter <= 5) {
+            crear.Crear("router", "router" + contadorRouter);
+        } else {
+            JOptionPane.showMessageDialog(null, "El maximo de routers es 5");
+        }
     }//GEN-LAST:event_BNRouterActionPerformed
 
     private void BCalcularRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCalcularRutaActionPerformed
         // TODO add your handling code here:
-        if (BCalcularRuta.getToolTipText().equals("0")){
+        if (BCalcularRuta.getToolTipText().equals("0")) {
             ruta = 1;
 
             BCalcularRuta.setToolTipText("1");
             BCalcularRuta.setBackground(Color.green);
-            
-        }
-        else{
+
+        } else {
             BCalcularRuta.setToolTipText("0");
             BCalcularRuta.setBackground(null);
             ruta = 0;
@@ -247,7 +253,7 @@ public class GUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUI().setVisible(true);
-                
+
             }
         });
     }

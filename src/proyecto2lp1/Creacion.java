@@ -152,19 +152,27 @@ public class Creacion implements ActionListener {
 
                 tempRuta[0] = e.getActionCommand();
                 Objetos temp = (Objetos) (map.get(tempRuta[0]));
-                temp.setBackground(Color.red);
-                auxRuta = 1;
+                if (temp.getText().substring(0, 6).equals("router")) {
+                    JOptionPane.showMessageDialog(null, "La ruta se debe calcular desde un computador a otro");
+                } else {
+                    temp.setBackground(Color.red);
+                    auxRuta = 1;
+                }
             } else {
                 String auxIndicesRuta;
 
                 tempRuta[1] = e.getActionCommand();
                 Objetos temp = (Objetos) (map.get(tempRuta[1]));
-                temp.setBackground(Color.red);
+                if (temp.getText().substring(0, 6).equals("router")) {
+                    JOptionPane.showMessageDialog(null, "La ruta se debe calcular desde un computador a otro");
+                } else {
+                    temp.setBackground(Color.red);
+                    auxRuta = 1;
+                    obtenerTodosCaminos(tempRuta[0], tempRuta[1]);
 
-                obtenerTodosCaminos(tempRuta[0], tempRuta[1]);
-
-                auxRuta = 0;
-                BMejorRuta.setToolTipText("0");
+                    auxRuta = 0;
+                    BMejorRuta.setToolTipText("0");
+                }
             }
         }
 

@@ -8,7 +8,6 @@ package proyecto2lp1;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -187,6 +186,8 @@ public class GUI extends javax.swing.JFrame {
             conexion = 1;
 
             BNConexion.setToolTipText("1");
+            BCalcularRuta.setToolTipText("0");
+            BCalcularRuta.setBackground(null);
             BNConexion.setBackground(Color.green);
 
             crear.Crear("conexion", "conexion" + contadorConexion);
@@ -213,6 +214,8 @@ public class GUI extends javax.swing.JFrame {
             ruta = 1;
 
             BCalcularRuta.setToolTipText("1");
+            BNConexion.setToolTipText("0");
+            BNConexion.setBackground(null);
             BCalcularRuta.setBackground(Color.green);
 
         } else {

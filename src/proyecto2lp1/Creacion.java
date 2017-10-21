@@ -211,7 +211,7 @@ public class Creacion implements ActionListener {
                     if (temp[0].equals(datos.getConexionA()) || temp[0].equals(datos.getConexionB())) {
 
                         contador1++;
-                        if (contador1 == 3 && helper1.equals("router")) {
+                        if (contador1 == 4 && helper1.equals("router")) {
                             bandera = 1;
                             JOptionPane.showMessageDialog(null, "El " + temp[0] + " ya tiene tres conexiones");
                             break;
@@ -224,14 +224,14 @@ public class Creacion implements ActionListener {
                     } else if (temp[1].equals(datos.getConexionA()) || temp[1].equals(datos.getConexionB())) {
                         contador2++;
 
-                        if (contador2 == 3 && helper2.equals("router")) {
+                        if (contador2 == 4 && helper2.equals("router")) {
                             bandera = 1;
                             JOptionPane.showMessageDialog(null, "El " + temp[1] + " ya tiene tres conexiones");
                             break;
                         }
                         if (contador2 == 1 && helper2.equals("comput")) {
                             bandera = 1;
-                            JOptionPane.showMessageDialog(null, "El computador solo puede tener una conexiones");
+                            JOptionPane.showMessageDialog(null, "El computador solo puede tener un conexion");
                             break;
                         }
                     }

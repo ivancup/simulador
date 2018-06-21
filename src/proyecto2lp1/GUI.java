@@ -27,10 +27,10 @@ public class GUI extends javax.swing.JFrame {
     int contadorConexion = 0;
     int contadorComputador = 0;
     Map map = new HashMap();
-
+    
     public GUI() {
         initComponents();
-
+        
         crear = new Creacion(contenedor, BNConexion, MVConexiones, BCalcularRuta);
     }
 
@@ -184,12 +184,12 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (BNConexion.getToolTipText().equals("0")) {
             conexion = 1;
-
+            
             BNConexion.setToolTipText("1");
             BCalcularRuta.setToolTipText("0");
             BCalcularRuta.setBackground(null);
             BNConexion.setBackground(Color.green);
-
+            
             crear.Crear("conexion", "conexion" + contadorConexion);
         } else {
             BNConexion.setToolTipText("0");
@@ -212,12 +212,12 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (BCalcularRuta.getToolTipText().equals("0")) {
             ruta = 1;
-
+            
             BCalcularRuta.setToolTipText("1");
             BNConexion.setToolTipText("0");
             BNConexion.setBackground(null);
             BCalcularRuta.setBackground(Color.green);
-
+            
         } else {
             BCalcularRuta.setToolTipText("0");
             BCalcularRuta.setBackground(null);
@@ -256,7 +256,7 @@ public class GUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUI().setVisible(true);
-
+                
             }
         });
     }

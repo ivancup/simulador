@@ -14,7 +14,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**

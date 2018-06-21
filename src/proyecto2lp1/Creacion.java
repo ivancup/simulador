@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -27,7 +26,7 @@ import javax.swing.JPanel;
  *
  * @author sala1
  */
-public class Creacion implements ActionListener {
+public class Creacion extends JPanel implements ActionListener{
 
     private String tipo;//tipo de objeto que se va acrear
     private JPanel panel;//panel donde se van a pintar
@@ -134,7 +133,7 @@ public class Creacion implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String a = e.getActionCommand();
         String comprobar = BConexion.getToolTipText();
-
+        
         if (e.getActionCommand().equals("eliminar")) {
             JMenuItem temp = (JMenuItem) e.getSource();
 
@@ -168,6 +167,7 @@ public class Creacion implements ActionListener {
                 } else {
                     temp.setBackground(Color.red);
                     auxRuta = 1;
+                    limpiarCaminos();
                     obtenerTodosCaminos(tempRuta[0], tempRuta[1]);
 
                     auxRuta = 0;
@@ -256,6 +256,7 @@ public class Creacion implements ActionListener {
 
                     Graphics g = panel.getGraphics();
                     g.setColor(Color.BLUE);
+                    
                     g.drawLine(x1, y1, x2, y2);
                     JMenu MConexion = new JMenu(conect.getConexionA() + "->" + conect.getConexionB());
                     MenuConexion.add(MConexion);
@@ -286,9 +287,8 @@ public class Creacion implements ActionListener {
         }
         repintar();
     }
-
+    
     public void repintar() {
-
         Iterator it = conexiones.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry e = (Map.Entry) it.next();
@@ -306,10 +306,13 @@ public class Creacion implements ActionListener {
                 Graphics g = panel.getGraphics();
                 g.setColor(Color.BLUE);
                 g.drawLine(x1, y1, x2, y2);
+                
+                
             } else {
                 Graphics g = panel.getGraphics();
                 g.setColor(Color.RED);
                 g.drawLine(x1, y1, x2, y2);
+                
 
             }
 
@@ -397,7 +400,25 @@ public class Creacion implements ActionListener {
         System.out.println();
     }
 
+    public void limpiarCaminos() {
+        Iterator it = conexiones.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry e = (Map.Entry) it.next();
+            Conexion conect = (Conexion) e.getValue();
+            conect.setColor(0);
+        }
+        Iterator it2 = map.entrySet().iterator();
+        while (it2.hasNext()) {
+            Map.Entry e = (Map.Entry) it2.next();
+            Objetos boton = (Objetos) e.getValue();
+            boton.setBackground(null);
+        }
+        keyRutas.clear();
+        mapaRutas.clear();
+    }
+
     public void mejorRuta() {
+        BMejorRuta.setBackground(null);
         String[] temporal = new String[2];
         temporal[0] = "0";
         temporal[1] = "0";
@@ -489,23 +510,27 @@ public class Creacion implements ActionListener {
             i++;
         }
 
-        float inicio = temp_mejor_ruta[0];//peor es buenoo
-        int indiceMapa = 0;
+        try {
+            float inicio = temp_mejor_ruta[0];//peor es buenoo
+            int indiceMapa = 0;
 
-        for (int j = 0; j < temp_mejor_ruta.length; j++) {
-            //Caso ideal
-            if (temp_mejor_ruta[j] <= inicio) {
-                inicio = temp_mejor_ruta[j];
-                indiceMapa = j;
-            } //No tan ideal
-        }
+            for (int j = 0; j < temp_mejor_ruta.length; j++) {
+                //Caso ideal
+                if (temp_mejor_ruta[j] <= inicio) {
+                    inicio = temp_mejor_ruta[j];
+                    indiceMapa = j;
+                } //No tan ideal
+            }
 
-        ArrayList<String> ruta;
-        ruta = (ArrayList<String>) keyRutas.get(indiceMapa);
+            ArrayList<String> ruta;
+            ruta = (ArrayList<String>) keyRutas.get(indiceMapa);
 
-        for (String nombre : ruta) {
-            Conexion conexiones2 = (Conexion) this.conexiones.get(Integer.parseInt(nombre));
-            conexiones2.setColor(1);
+            for (String nombre : ruta) {
+                Conexion conexiones2 = (Conexion) this.conexiones.get(Integer.parseInt(nombre));
+                conexiones2.setColor(1);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Por el momento no se puede formar ninguna ruta entre los elementos seleccionados");
         }
 
     }
